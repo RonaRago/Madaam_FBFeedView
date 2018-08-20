@@ -16,6 +16,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         //Navigationbar Title 
         navigationItem.title = "Facebook Feed"
+        collectionView?.alwaysBounceVertical = true
         collectionView?.backgroundColor = UIColor(white: 0.95, alpha: 1)
         collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
         
