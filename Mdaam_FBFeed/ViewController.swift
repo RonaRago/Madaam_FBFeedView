@@ -46,9 +46,21 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+        //sample name in cellls
+        let nameLabel: UILabel = {
+            let label = UILabel()
+            label.text = "Sample Name"
+            label.font = UIFont.boldSystemFont(ofSize: 14)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            //label.numberOfLines = 2
+            return label
+        }()
 
     func setupViews(){
         backgroundColor = UIColor.white
 
+        addSubview(nameLabel)
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
     }
 }
