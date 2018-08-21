@@ -74,14 +74,9 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         addSubview(profileImageView)
         
         addConstraintswithFormat(format: "H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
+        addConstraintswithFormat(format: "V:|[v0]|", views: nameLabel)
+        addConstraintswithFormat(format: "V:|-8-[v0(44)]|", views: profileImageView)
         
-      
-        
-        //contraints for Profile Name
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
-        
-        //constraints for Profile Image
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0(44)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": profileImageView]))
         
         
     }
