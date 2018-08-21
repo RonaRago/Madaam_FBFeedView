@@ -49,19 +49,20 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         //sample name in cellls
         let nameLabel: UILabel = {
             let label = UILabel()
-            label.text = "Sample Name"
-            label.font = UIFont.boldSystemFont(ofSize: 14)
-            label.translatesAutoresizingMaskIntoConstraints = false
-            //label.numberOfLines = 2
+            
+            let attributedText = NSMutableAttributedString(string: "Mark Zuckerberg", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
+            label.attributedText = attributedText
+            
+            
             return label
         }()
         
         //set profile image in cells
         let profileImageView: UIImageView = {
             let imageView = UIImageView()
+            imageView.image = UIImage(named: "zuckprofile")
             imageView.contentMode = .scaleAspectFit
             imageView.backgroundColor=UIColor.red
-            imageView.translatesAutoresizingMaskIntoConstraints = false
             return imageView
             
         }()
