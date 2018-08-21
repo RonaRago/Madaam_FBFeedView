@@ -55,12 +55,33 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             //label.numberOfLines = 2
             return label
         }()
-
+        
+        //set profile image in cells
+        let profileImageView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFit
+            imageView.backgroundColor=UIColor.red
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            return imageView
+            
+        }()
+        
+    // Call all views
     func setupViews(){
         backgroundColor = UIColor.white
 
         addSubview(nameLabel)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
+        addSubview(profileImageView)
+        
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-8-[v0(44)]-8-[v1]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": profileImageView, "v1": nameLabel]))
+        
+        //contraints for Profile Name
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
+        
+        //constraints for Profile Image
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0(44)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": profileImageView]))
+        
+        
     }
 }
