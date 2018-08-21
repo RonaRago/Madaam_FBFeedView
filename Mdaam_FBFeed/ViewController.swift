@@ -73,8 +73,9 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         addSubview(nameLabel)
         addSubview(profileImageView)
         
+        addConstraintswithFormat(format: "H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-8-[v0(44)]-8-[v1]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": profileImageView, "v1": nameLabel]))
+      
         
         //contraints for Profile Name
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
@@ -83,5 +84,20 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0(44)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": profileImageView]))
         
         
+    }
+}
+
+    //extension for all constraints
+extension UIView{
+    
+    func addConstraintswithFormat(format: String, views: UIView...){
+        var viewsDictionary = [String: UIView]()
+        for (index, view) in views.enumerated(){
+           let key = "v\(index)"
+            viewsDictionary[key] = view
+            view.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
     }
 }
