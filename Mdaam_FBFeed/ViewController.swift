@@ -32,7 +32,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: 200)
+        return CGSize(width: view.frame.width, height: 300)
     }
 
 }
@@ -83,10 +83,19 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             //Post status
             let statusTextView: UITextView = {
             let textView = UITextView()
-            textView.text = "Hello World, Let's try Swift."
+            textView.text = "Hello World! Let's try Swift."
             textView.font = UIFont.systemFont(ofSize: 14)
             //textView.isScrollEnabled = false
             return textView
+            }()
+        
+            //Imagepost
+            let statusImageView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.image = UIImage(named: "zuckdog")
+            imageView.contentMode = .scaleAspectFill
+            imageView.layer.masksToBounds = true
+            return imageView
             }()
         
         
@@ -97,11 +106,13 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             addSubview(nameLabel)
             addSubview(profileImageView)
             addSubview(statusTextView)
+            addSubview(statusImageView)
             
             addConstraintswithFormat(format: "H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
             addConstraintswithFormat(format: "H:|-4-[v0]-4-|", views: statusTextView)
+            addConstraintswithFormat(format: "H:|[v0]|", views: statusImageView)
             addConstraintswithFormat(format: "V:|-12-[v0]", views: nameLabel)
-            addConstraintswithFormat(format: "V:|-8-[v0(44)]-4-[v1(30)]", views: profileImageView, statusTextView)
+                addConstraintswithFormat(format: "V:|-8-[v0(44)]-4-[v1(30)]-4-[v2]|", views: profileImageView, statusTextView, statusImageView)
             
         
         
