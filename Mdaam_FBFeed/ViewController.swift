@@ -63,6 +63,13 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             
             attributedText.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedText.string.characters.count))
             
+            //global icon in post
+            let attachment = NSTextAttachment()
+            attachment.image = UIImage(named: "globe_small")
+            attachment.bounds = CGRect(x: 0, y: -2, width: 12, height: 12)
+            attributedText.append(NSAttributedString(attachment: attachment))
+            
+            label.attributedText = attributedText
             
             return label
         }()
