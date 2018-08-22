@@ -55,8 +55,13 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             
             attributedText.append(NSAttributedString(string: "\nDecember 18 * San Francisco * ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor:
                 UIColor(red:155/255, green: 161/225, blue: 171/255, alpha:1)]))
-            
             label.attributedText = attributedText
+
+            //increase spacing
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 4
+            
+            attributedText.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedText.string.characters.count))
             
             
             return label
