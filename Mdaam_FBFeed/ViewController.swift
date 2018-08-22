@@ -98,6 +98,14 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             return imageView
             }()
         
+            //Likes and Comment
+            let likescommentsLabel: UILabel = {
+            let label = UILabel()
+            label.text = "488 Likes  10.7K Comments"
+            label.font = UIFont.systemFont(ofSize: 12)
+            return label
+            }()
+        
         
             // Call all views
             func setupViews(){
@@ -107,12 +115,17 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             addSubview(profileImageView)
             addSubview(statusTextView)
             addSubview(statusImageView)
-            
+            addSubview(likescommentsLabel)
+
+             
             addConstraintswithFormat(format: "H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
             addConstraintswithFormat(format: "H:|-4-[v0]-4-|", views: statusTextView)
             addConstraintswithFormat(format: "H:|[v0]|", views: statusImageView)
+            addConstraintswithFormat(format: "H:|-12-[v0]|", views: likescommentsLabel)
             addConstraintswithFormat(format: "V:|-12-[v0]", views: nameLabel)
-                addConstraintswithFormat(format: "V:|-8-[v0(44)]-4-[v1(30)]-4-[v2]|", views: profileImageView, statusTextView, statusImageView)
+            
+            //ConstraintsFormat
+            addConstraintswithFormat(format: "V:|-8-[v0(44)]-4-[v1(30)]-4-[v2]-8-[v3(24)]-8-|", views: profileImageView, statusTextView, statusImageView, likescommentsLabel)
             
         
         
