@@ -32,7 +32,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: 60)
+        return CGSize(width: view.frame.width, height: 200)
     }
 
 }
@@ -54,7 +54,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             let attributedText = NSMutableAttributedString(string: "Mark Zuckerberg", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
             
             attributedText.append(NSAttributedString(string: "\nDecember 18 * San Francisco * ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor:
-                UIColor(red:155/255, green: 161/225, blue: 171/255, alpha:1)]))
+                UIColor(red:155/255, green: 150/225, blue: 171/255, alpha:1)]))
             label.attributedText = attributedText
 
             //increase spacing
@@ -91,7 +91,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         addSubview(profileImageView)
         
         addConstraintswithFormat(format: "H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
-        addConstraintswithFormat(format: "V:|[v0]|", views: nameLabel)
+        addConstraintswithFormat(format: "V:|-8-[v0]", views: nameLabel)
         addConstraintswithFormat(format: "V:|-8-[v0(44)]|", views: profileImageView)
         
         
