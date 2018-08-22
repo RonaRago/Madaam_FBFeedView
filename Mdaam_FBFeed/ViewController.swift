@@ -53,7 +53,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             
             let attributedText = NSMutableAttributedString(string: "Mark Zuckerberg", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
                 attributedText.append(NSAttributedString(string: "\nDecember 18 * San Francisco * ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor:
-                UIColor(red:155/255, green: 150/225, blue: 171/255, alpha:1)]))
+                UIColor.rgb(155, green: 161, blue: 161)]))
                 label.attributedText = attributedText
 
             //Increase spacing
@@ -126,23 +126,26 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             
             //ConstraintsFormat
             addConstraintswithFormat(format: "V:|-8-[v0(44)]-4-[v1(30)]-4-[v2]-8-[v3(24)]-8-|", views: profileImageView, statusTextView, statusImageView, likescommentsLabel)
-            
-        
-        
-    }
-}
+            }
+            }
 
-    //extension for all constraints
-extension UIView{
-    
-    func addConstraintswithFormat(format: String, views: UIView...){
-        var viewsDictionary = [String: UIView]()
-        for (index, view) in views.enumerated(){
-           let key = "v\(index)"
-            viewsDictionary[key] = view
-            view.translatesAutoresizingMaskIntoConstraints = false
+            //extension for UIColor
+            extension UIColor {
+                
+                static func rgb(_ red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
+                    return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+                }
+            }
+
+            //extension for all constraints
+            extension UIView{
+            func addConstraintswithFormat(format: String, views: UIView...){
+                var viewsDictionary = [String: UIView]()
+                for (index, view) in views.enumerated(){
+                   let key = "v\(index)"
+                    viewsDictionary[key] = view
+                    view.translatesAutoresizingMaskIntoConstraints = false
+                }
+                addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
+            }
         }
-        
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
-    }
-}
