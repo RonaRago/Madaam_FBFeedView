@@ -103,6 +103,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             let label = UILabel()
             label.text = "488 Likes  10.7K Comments"
             label.font = UIFont.systemFont(ofSize: 12)
+            label.textColor = UIColor.rgb(155, green: 161, blue: 171)
             return label
             }()
         
