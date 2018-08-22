@@ -49,8 +49,13 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         //sample name in cellls
         let nameLabel: UILabel = {
             let label = UILabel()
+            label.numberOfLines = 2
             
             let attributedText = NSMutableAttributedString(string: "Mark Zuckerberg", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
+            
+            attributedText.append(NSAttributedString(string: "\nDecember 18 * San Francisco * ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor:
+                UIColor(red:155/255, green: 161/225, blue: 171/255, alpha:1)]))
+            
             label.attributedText = attributedText
             
             
@@ -62,7 +67,6 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             let imageView = UIImageView()
             imageView.image = UIImage(named: "zuckprofile")
             imageView.contentMode = .scaleAspectFit
-            imageView.backgroundColor=UIColor.red
             return imageView
             
         }()
