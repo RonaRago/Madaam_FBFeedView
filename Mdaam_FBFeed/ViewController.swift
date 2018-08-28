@@ -120,8 +120,8 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         button.setTitle("Like", for: UIControlState())
         button.setTitleColor(UIColor.rgb(143, green: 150, blue: 263), for: UIControlState() )
             button.setImage(UIImage(named: "like"), for: UIControlState())
+            button.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0)
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-            button.titleEdgeInsets = UIEdgeInsets(top: 0,left: 8,bottom: 0,right: 0)
         return button
         }()
 
