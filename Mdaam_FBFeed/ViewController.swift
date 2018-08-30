@@ -46,11 +46,8 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let feedCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FeedCell
-        
-        if let name = posts[indexPath.item].name{
-            feedCell.nameLabel.text = name
-
-        }
+    //call feedcell
+        feedCell.post = posts[indexPath.item]
         return feedCell
         
     }
@@ -69,6 +66,34 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
 }
 
     class FeedCell: UICollectionViewCell{
+    
+        var post: Post? {
+            didSet{
+                
+                //namesetting
+                if let name = post?.name{
+                 
+                    let attributedText = NSMutableAttributedString(string: name, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
+                    attributedText.append(NSAttributedString(string: "\nDecember 18 * San Francisco * ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor:
+                        UIColor.rgb(155, green: 161, blue: 161)]))
+                    //label.attributedText = attributedText
+                    
+                    //Increase spacing
+                    let paragraphStyle = NSMutableParagraphStyle()
+                    paragraphStyle.lineSpacing = 4
+                    attributedText.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedText.string.characters.count))
+                    
+                    //Global icon in post
+                    let attachment = NSTextAttachment()
+                    attachment.image = UIImage(named: "globe_small")
+                    attachment.bounds = CGRect(x: 0, y: -2, width: 12, height: 12)
+                    attributedText.append(NSAttributedString(attachment: attachment))
+                    nameLabel.attributedText = attributedText
+                }
+                    
+                
+            }
+        }
     override init(frame: CGRect) {
     super.init(frame: frame)
         setupViews()
@@ -83,22 +108,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     let label = UILabel()
     label.numberOfLines = 2
     
-    let attributedText = NSMutableAttributedString(string: "Mark Zuckerberg", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: "\nDecember 18 * San Francisco * ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor:
-        UIColor.rgb(155, green: 161, blue: 161)]))
-        label.attributedText = attributedText
-
-    //Increase spacing
-    let paragraphStyle = NSMutableParagraphStyle()
-    paragraphStyle.lineSpacing = 4
-        attributedText.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedText.string.characters.count))
     
-    //Global icon in post
-    let attachment = NSTextAttachment()
-    attachment.image = UIImage(named: "globe_small")
-    attachment.bounds = CGRect(x: 0, y: -2, width: 12, height: 12)
-        attributedText.append(NSAttributedString(attachment: attachment))
-        label.attributedText = attributedText
     return label
         
     }()
