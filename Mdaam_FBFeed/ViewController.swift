@@ -98,7 +98,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     return imageView
     }()
 
-    //Likes and Comment
+    //Likes and Comment Counter
     let likescommentsLabel: UILabel = {
     let label = UILabel()
     label.text = "488 Likes  10.7K Comments"
@@ -108,35 +108,32 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }()
 
     //Divider Line Between Image post and Likes Comment
-        let dividerLineView: UIView = {
-        let view  = UIView()
-            view.backgroundColor = UIColor.rgb(226, green:288, blue:200)
-        return view
-        }()
-        
-
-        
-        
-        
-    // BTN
-        let likeButton = FeedCell.buttonForTitle("Like", imageName: "like")
-        let commentButton: UIButton = FeedCell.buttonForTitle("Comment", imageName: "comment")
+    let dividerLineView: UIView = {
+    let view  = UIView()
+        view.backgroundColor = UIColor.rgb(226, green:288, blue:200)
+    return view
+    }()
+    
+    // FEED BTN
+    let likeButton = FeedCell.buttonForTitle("Like", imageName: "like")
+    let commentButton: UIButton = FeedCell.buttonForTitle("Comment", imageName: "comment")
+    let shareButton: UIButton = FeedCell.buttonForTitle("Share", imageName: "share")
         
         
     //Function for all the button constraints
-        static func buttonForTitle(_ title: String, imageName: String) -> UIButton {
-            let button = UIButton()
-            button.setTitle(title, for: UIControlState())
-            button.setTitleColor(UIColor.rgb(143, green: 150, blue: 163), for: UIControlState())
-            
-            button.setImage(UIImage(named: imageName), for: UIControlState())
-            button.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0)
-            
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-            
-            return button
-        }
+    static func buttonForTitle(_ title: String, imageName: String) -> UIButton {
+        let button = UIButton()
+        button.setTitle(title, for: UIControlState())
+        button.setTitleColor(UIColor.rgb(143, green: 150, blue: 163), for: UIControlState())
         
+        button.setImage(UIImage(named: imageName), for: UIControlState())
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0)
+        
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        
+        return button
+    }
+    
 
     // Call all views
     func setupViews(){
@@ -150,6 +147,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     addSubview(dividerLineView)
     addSubview(likeButton)
     addSubview(commentButton)
+    addSubview(shareButton)
         
 
      
@@ -159,13 +157,15 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     addConstraintswithFormat(format: "H:|-12-[v0]|", views: likescommentsLabel)
     addConstraintswithFormat(format: "H:|-12-[v0]-12-|", views: dividerLineView)
     //button constraints
-    addConstraintswithFormat(format: "H:|-12-[v0(v1)][v1]|", views: likeButton, commentButton)
+    addConstraintswithFormat(format: "H:|-12-[v0(v2)][v1(v2)][v2]|", views: likeButton, commentButton, shareButton)
         
     addConstraintswithFormat(format: "V:|-12-[v0]", views: nameLabel)
     
     //ConstraintsFormat
     addConstraintswithFormat(format: "V:|-8-[v0(44)]-4-[v1(30)]-4-[v2]-8-[v3(24)]-8-[v4(0.4)][v5(44)]|", views: profileImageView, statusTextView, statusImageView, likescommentsLabel,dividerLineView,likeButton)
-        addConstraintswithFormat(format: "V:[v0(44)]|", views: commentButton)
+    
+    addConstraintswithFormat(format: "V:[v0(44)]|", views: commentButton)
+    addConstraintswithFormat(format: "V:[v0(44)]|", views: shareButton)
     }
     }
 
