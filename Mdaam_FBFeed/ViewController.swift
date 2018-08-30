@@ -114,16 +114,29 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return view
         }()
         
-    //LikeButton
-        let likeButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Like", for: UIControlState())
-        button.setTitleColor(UIColor.rgb(143, green: 150, blue: 263), for: UIControlState() )
-            button.setImage(UIImage(named: "like"), for: UIControlState())
+
+        
+        
+        
+    // BTN
+        let likeButton = FeedCell.buttonForTitle("Like", imageName: "like")
+        let commentButton: UIButton = FeedCell.buttonForTitle("Comment", imageName: "comment")
+        
+        
+    //Function for all the button constraints
+        static func buttonForTitle(_ title: String, imageName: String) -> UIButton {
+            let button = UIButton()
+            button.setTitle(title, for: UIControlState())
+            button.setTitleColor(UIColor.rgb(143, green: 150, blue: 163), for: UIControlState())
+            
+            button.setImage(UIImage(named: imageName), for: UIControlState())
             button.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0)
+            
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        return button
-        }()
+            
+            return button
+        }
+        
 
     // Call all views
     func setupViews(){
@@ -136,6 +149,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     addSubview(likescommentsLabel)
     addSubview(dividerLineView)
     addSubview(likeButton)
+    addSubview(commentButton)
         
 
      
@@ -144,11 +158,14 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     addConstraintswithFormat(format: "H:|[v0]|", views: statusImageView)
     addConstraintswithFormat(format: "H:|-12-[v0]|", views: likescommentsLabel)
     addConstraintswithFormat(format: "H:|-12-[v0]-12-|", views: dividerLineView)
-        addConstraintswithFormat(format: "H:|[v0]|", views: likeButton)
+    //button constraints
+    addConstraintswithFormat(format: "H:|-12-[v0(v1)][v1]|", views: likeButton, commentButton)
+        
     addConstraintswithFormat(format: "V:|-12-[v0]", views: nameLabel)
     
     //ConstraintsFormat
     addConstraintswithFormat(format: "V:|-8-[v0(44)]-4-[v1(30)]-4-[v2]-8-[v3(24)]-8-[v4(0.4)][v5(44)]|", views: profileImageView, statusTextView, statusImageView, likescommentsLabel,dividerLineView,likeButton)
+        addConstraintswithFormat(format: "V:[v0(44)]|", views: commentButton)
     }
     }
 
