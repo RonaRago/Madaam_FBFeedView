@@ -9,10 +9,29 @@
 import UIKit
 
 let cellId = "cellId"
-class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
 
+//Modal Object for Posts
+class Post{
+    var name: String?
+}
+class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
+    
+    //allocate post in array
+    
+    var posts = [Post]()
+    
+    
     override func viewDidLoad() {
     super.viewDidLoad()
+        
+        let postMark = Post()
+        postMark.name = "Mark Zuckerberg"
+        
+        let postSteve = Post()
+        postSteve.name = "Stve Jobs"
+        
+        posts.append(postMark)
+        posts.append(postSteve)
 
     //Navigationbar Title
     navigationItem.title = "Facebook Feed"
@@ -22,11 +41,18 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 3
+        return posts.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    return collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+    let feedCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FeedCell
+        
+        if let name = posts[indexPath.item].name{
+            feedCell.nameLabel.text = name
+
+        }
+        return feedCell
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -34,6 +60,12 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     return CGSize(width: view.frame.width, height: 400)
     }
 
+    //Landscape and Portrait Orrientation of Screen Handling
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        collectionView?.collectionViewLayout.invalidateLayout()
+    }
+    
 }
 
     class FeedCell: UICollectionViewCell{
