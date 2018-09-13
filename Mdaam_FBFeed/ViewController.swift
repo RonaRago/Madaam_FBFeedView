@@ -58,8 +58,18 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if let statusText = posts[indexPath.item].statusText {
 
-    return CGSize(width: view.frame.width, height: 400)
+            let rect = NSString(string: statusText).boundingRect(with: CGSize(width: view.frame.width, height: 1000), options: NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)], context: nil)
+
+            let knownHeight: CGFloat = 8 + 44 + 4 + 4 + 200 + 8 + 24 + 8 + 44
+
+            return CGSize(width: view.frame.width, height: rect.height + knownHeight + 24)
+            
+        }
+
+    return CGSize(width: view.frame.width, height: 500)
     }
 
     //Landscape and Portrait Orrientation of Screen Handling
@@ -97,9 +107,9 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 }
                
                 
-//                if let statusText = post?.statusText{
-//                    statusTextView.text = statusText
-//                }
+                if let statusText = post?.statusText{
+                    statusTextView.text = statusText
+                }
                 
             }
         }
@@ -200,7 +210,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     addSubview(commentButton)
     addSubview(shareButton)
         
-
+    statusTextView.backgroundColor = UIColor.green
      
     addConstraintswithFormat(format: "H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
     addConstraintswithFormat(format: "H:|-4-[v0]-4-|", views: statusTextView)
@@ -213,7 +223,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     addConstraintswithFormat(format: "V:|-12-[v0]", views: nameLabel)
     
     //ConstraintsFormat
-    addConstraintswithFormat(format: "V:|-8-[v0(44)]-4-[v1(30)]-4-[v2]-8-[v3(24)]-8-[v4(0.4)][v5(44)]|", views: profileImageView, statusTextView, statusImageView, likescommentsLabel,dividerLineView,likeButton)
+    addConstraintswithFormat(format: "V:|-8-[v0(44)]-4-[v1]-4-[v2(200)]-8-[v3(24)]-8-[v4(0.4)][v5(44)]|", views: profileImageView, statusTextView, statusImageView, likescommentsLabel,dividerLineView,likeButton)
     
     addConstraintswithFormat(format: "V:[v0(44)]|", views: commentButton)
     addConstraintswithFormat(format: "V:[v0(44)]|", views: shareButton)
