@@ -146,7 +146,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     let textView = UITextView()
     textView.text = "Hello World! Let's try Swift."
     textView.font = UIFont.systemFont(ofSize: 14)
-    //textView.isScrollEnabled = false
+    textView.isScrollEnabled = false
     return textView
     }()
 
