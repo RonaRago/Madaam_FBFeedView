@@ -14,6 +14,7 @@ let cellId = "cellId"
 class Post{
     var name: String?
     var statusText: String?
+    var profileImageName: String?
 }
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
     
@@ -28,12 +29,14 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let postMark = Post()
         postMark.name = "Mark Zuckerberg"
         postMark.statusText = "Meanwhile Beast turned to the darkside"
+        postMark.profileImageName = "zuckprofile"
         
         let postSteve = Post()
         postSteve.name = "Stve Jobs"
         postSteve.statusText = "Design is not just what it looks like and feels like. Design is how it works.\n\n" +
                         "Being the richest man in the cemetery doesn't matter to me. Going to bed at night saying we've done something wonderful, that's what matters to me.\n\n" +
-                    "Sometimes when you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations."
+                        "Sometimes when you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations."
+        postSteve.profileImageName = "steve_profile"
         
         posts.append(postMark)
         posts.append(postSteve)
@@ -61,12 +64,9 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         if let statusText = posts[indexPath.item].statusText {
 
-            let rect = NSString(string: statusText).boundingRect(with: CGSize(width: view.frame.width, height: 1000), options: NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)], context: nil)
-
+            let rect = NSString(string: statusText).boundingRect(with: CGSize(width: view.frame.width, height: 1000), options:NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)], context: nil)
             let knownHeight: CGFloat = 8 + 44 + 4 + 4 + 200 + 8 + 24 + 8 + 44
-
             return CGSize(width: view.frame.width, height: rect.height + knownHeight + 24)
-            
         }
 
     return CGSize(width: view.frame.width, height: 500)
@@ -109,6 +109,11 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 
                 if let statusText = post?.statusText{
                     statusTextView.text = statusText
+                }
+                
+                //showing of profile image
+                if let profileImagename = post?.profileImageName{
+                    profileImageView.image = UIImage(named: profileImagename)
                 }
                 
             }
@@ -209,9 +214,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     addSubview(likeButton)
     addSubview(commentButton)
     addSubview(shareButton)
-        
-    statusTextView.backgroundColor = UIColor.green
-     
+    
     addConstraintswithFormat(format: "H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
     addConstraintswithFormat(format: "H:|-4-[v0]-4-|", views: statusTextView)
     addConstraintswithFormat(format: "H:|[v0]|", views: statusImageView)
