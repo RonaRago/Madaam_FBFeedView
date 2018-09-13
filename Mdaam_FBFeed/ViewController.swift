@@ -13,6 +13,7 @@ let cellId = "cellId"
 //Modal Object for Posts
 class Post{
     var name: String?
+    var statusText: String?
 }
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
     
@@ -26,9 +27,13 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         let postMark = Post()
         postMark.name = "Mark Zuckerberg"
+        postMark.statusText = "Meanwhile Beast turned to the darkside"
         
         let postSteve = Post()
         postSteve.name = "Stve Jobs"
+        postSteve.statusText = "Design is not just what it looks like and feels like. Design is how it works.\n\n" +
+                        "Being the richest man in the cemetery doesn't matter to me. Going to bed at night saying we've done something wonderful, that's what matters to me.\n\n" +
+                    "Sometimes when you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations."
         
         posts.append(postMark)
         posts.append(postSteve)
@@ -90,7 +95,11 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
                     attributedText.append(NSAttributedString(attachment: attachment))
                     nameLabel.attributedText = attributedText
                 }
-                    
+               
+                
+//                if let statusText = post?.statusText{
+//                    statusTextView.text = statusText
+//                }
                 
             }
         }
