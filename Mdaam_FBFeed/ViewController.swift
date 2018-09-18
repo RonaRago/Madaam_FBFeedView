@@ -138,6 +138,12 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
                     profileImageView.image = UIImage(named: profileImagename)
                 }
                 
+                //showing of status image
+                if let statusImagename = post?.statusImageName{
+                    statusImageView.image = UIImage(named: statusImagename)
+                }
+                
+                
             }
         }
     override init(frame: CGRect) {
