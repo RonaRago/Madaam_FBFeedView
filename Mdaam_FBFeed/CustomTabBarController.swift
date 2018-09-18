@@ -7,3 +7,13 @@
 //
 
 import UIKit
+
+class CustomTabBarController : UITabBarController{
+    override func viewDidLoad(){
+    super.viewDidLoad()
+                let feedController = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
+                let navigationController = UINavigationController(rootViewController: feedController)
+        
+        viewControllers = [navigationController]
+    }
+}
