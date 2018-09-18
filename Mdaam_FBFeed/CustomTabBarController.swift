@@ -24,9 +24,13 @@ class CustomTabBarController : UITabBarController{
                 secondnavigationController.tabBarItem.image = UIImage(named: "requests_icon")
         
                 //Third tab  Messenger
-                let messengernavigationController = UINavigationController(rootViewController: UIViewController())
+                let messengerVC = UIViewController()
+                messengerVC.navigationItem.title = "Messenger View"
+                let messengernavigationController = UINavigationController(rootViewController: messengerVC)
                 messengernavigationController.title = "Messenger"
                 messengernavigationController.tabBarItem.image = UIImage(named: "messenger_icon")
+        
+        
         
         
         viewControllers = [navigationController, secondnavigationController, messengernavigationController]
