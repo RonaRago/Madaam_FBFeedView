@@ -13,6 +13,9 @@ class CustomTabBarController : UITabBarController{
     super.viewDidLoad()
                 let feedController = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
                 let navigationController = UINavigationController(rootViewController: feedController)
+                //tab title
+                navigationController.title = "News Feed"
+                navigationController.tabBarItem.image = UIImage(named: "news_feed_icon")
         
         viewControllers = [navigationController]
     }
