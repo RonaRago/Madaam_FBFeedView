@@ -30,9 +30,23 @@ class CustomTabBarController : UITabBarController{
                 messengernavigationController.title = "Messenger"
                 messengernavigationController.tabBarItem.image = UIImage(named: "messenger_icon")
         
+                //Fourth tab  Global Notifications
+                let notifVC = UIViewController()
+                notifVC.navigationItem.title = "Global Notifications"
+                let notificationsnavigationController = UINavigationController(rootViewController: notifVC)
+                notificationsnavigationController.title = "Notifications"
+                notificationsnavigationController.tabBarItem.image = UIImage(named: "globe_icon")
+        
+                //Fifth tab  Messenger
+                let moreVC = UIViewController()
+                moreVC.navigationItem.title = "More View"
+                let morenavigationController = UINavigationController(rootViewController: moreVC)
+                morenavigationController.title = "More"
+                morenavigationController.tabBarItem.image = UIImage(named: "more_icon")
         
         
         
-        viewControllers = [navigationController, secondnavigationController, messengernavigationController]
+        
+        viewControllers = [navigationController, secondnavigationController, messengernavigationController, notificationsnavigationController, morenavigationController]
     }
 }
