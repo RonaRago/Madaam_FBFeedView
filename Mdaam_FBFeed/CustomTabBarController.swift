@@ -13,17 +13,22 @@ class CustomTabBarController : UITabBarController{
     super.viewDidLoad()
                 let feedController = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
                 let navigationController = UINavigationController(rootViewController: feedController)
-                //First tab title
+                //First tab  News Feed
                 navigationController.title = "News Feed"
                 navigationController.tabBarItem.image = UIImage(named: "news_feed_icon")
         
+                //Second tab  Friend Request
                 let friendRequestsController = FriendRequestsController()
                 let secondnavigationController = UINavigationController(rootViewController: friendRequestsController)
-                //Second tab title
                 secondnavigationController.title = "Requests"
                 secondnavigationController.tabBarItem.image = UIImage(named: "requests_icon")
         
-
-        viewControllers = [navigationController, secondnavigationController]
+                //Third tab  Messenger
+                let messengernavigationController = UINavigationController(rootViewController: UIViewController())
+                messengernavigationController.title = "Messenger"
+                messengernavigationController.tabBarItem.image = UIImage(named: "messenger_icon")
+        
+        
+        viewControllers = [navigationController, secondnavigationController, messengernavigationController]
     }
 }
